@@ -1,18 +1,17 @@
+import { Heading, Link, VStack } from "@chakra-ui/layout";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { selectIsLoggedIn, selectUser } from "redux/auth/authSelectors";
+import { selectIsLoggedIn } from "redux/auth/authSelectors";
 
 const Home = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn)
-    const {name} = useSelector(selectUser)
     return (
-        <div>
-            <h1>
+        <VStack py='90px'>
+            <Heading size='xl'>
                 Welcome to Phonebook App
-            </h1>
-            {isLoggedIn ? (<h2>{name}</h2>) : (<h2>Please <NavLink to={'/register'}>register</NavLink> or <NavLink to={'/login'}>login</NavLink> if you already have an account.</h2>
-        )}
-         </div>   
+            </Heading>
+            {!isLoggedIn && <Heading size='md'>Please <Link color='teal.400'><NavLink to={'/register'}>register</NavLink></Link> or <Link color='teal.400'><NavLink to={'/login'}>login</NavLink></Link> if you already have an account.</Heading>}
+         </VStack>   
     )
 }
 

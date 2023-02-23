@@ -23,18 +23,7 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
   return isRefreshing ? <p>Refreshing user...</p> : (
-  //   <div
-  //     style={{
-  //       display: 'flex',
-  //       justifyContent: 'center',
-  //       alignItems: 'center',
-  //       fontSize: 40,
-  //       color: '#010101',
-  //       listStyle: null,
-  //     }}
-  //   >
-  // <Phonebook></Phonebook>
-  //   </div>
+
 
     <Routes>
       <Route path="/" element={<SharedLayout />} end>

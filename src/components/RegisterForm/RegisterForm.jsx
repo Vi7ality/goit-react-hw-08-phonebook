@@ -1,3 +1,7 @@
+import { Button } from "@chakra-ui/button";
+import { FormControl, FormLabel } from "@chakra-ui/form-control";
+import { Input } from "@chakra-ui/input";
+import { VStack } from "@chakra-ui/layout";
 import { useDispatch } from "react-redux";
 import { register } from "redux/auth/authOperations";
 
@@ -24,20 +28,22 @@ export const RegisterForm = () => {
 
 
      return (
-    <form  autoComplete="off" onSubmit={handleSubmit}>
-      <label>
-        Username
-        <input type="text" name="name" required/>
-      </label>
-      <label>
-        Email
-        <input type="email" name="email" required/>
-      </label>
-      <label>
-        Password
-        <input type="password" name="password" required/>
-      </label>
-      <button type="submit">Register</button>
+       <form autoComplete="off" onSubmit={handleSubmit}>
+                     <VStack align='flex-start' py="10px" px="15px" maxW='md'>
+            <FormControl>
+                <FormLabel>Username</FormLabel>
+                <Input type="text" name="name" required/>
+            </FormControl>
+            <FormControl>
+                <FormLabel>Email</FormLabel>
+                <Input type="email" name="email" required/>
+           </FormControl>
+                       <FormControl>
+                <FormLabel>Password</FormLabel>
+                <Input type="password" name="password" required/>
+            </FormControl>
+            <Button type="submit">Register</Button>
+            </VStack>
     </form>
   );
 }

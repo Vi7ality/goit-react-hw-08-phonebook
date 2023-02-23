@@ -1,7 +1,9 @@
+import { FormControl, FormLabel } from '@chakra-ui/form-control';
+import { Input } from '@chakra-ui/input';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
 import { selectFilterQuery } from 'redux/selectors';
-import { FilterInput, FilterLabelText } from './Filter.styled';
+
 
 export function Filter() {
   const dispatch = useDispatch();
@@ -11,9 +13,10 @@ export function Filter() {
     dispatch(setFilter(event.currentTarget.value));
   };
   return (
-    <label>
-      <FilterLabelText>Find contacts by name</FilterLabelText>
-      <FilterInput
+    <FormControl>
+      <FormLabel>Find contacts by name</FormLabel>
+      <Input
+        placeholder='Type a name'
         type="text"
         name="filter"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -21,6 +24,6 @@ export function Filter() {
         value={value}
         onChange={filterChange}
       />
-    </label>
+    </FormControl>
   );
 }

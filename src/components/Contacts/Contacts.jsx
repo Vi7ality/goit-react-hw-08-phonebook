@@ -1,13 +1,9 @@
+import { Button } from '@chakra-ui/button';
+import { ListItem, Text, UnorderedList, VStack } from '@chakra-ui/layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/operations';
 import { selectVisibleContacts } from 'redux/selectors';
-import {
-  ContactName,
-  ContactNumber,
-  ContactsItem,
-  ContactsList,
-  DeleteBtn,
-} from './Contacts.styled';
+
 
 export function Contacts() {
   const dispatch = useDispatch();
@@ -15,25 +11,23 @@ export function Contacts() {
   const visibleContacts = useSelector(selectVisibleContacts);
 
   return (
-    <div>
-      <ContactsList>
+      <UnorderedList px='15px' py='10px' spacing='8px'>
         {visibleContacts.map(({ id, name, number }) => {
           return (
-            <ContactsItem key={id}>
-              <ContactName>{name}:</ContactName>
-              <ContactNumber href={`tel: ${number}`}>{number}</ContactNumber>
-              <DeleteBtn
+            <ListItem key={id} display='flex'>
+              <Text mr='5px'>{name}:</Text>
+              <Text mr='10px' href={`tel: ${number}`}>{number}</Text>
+              <Button size='sm'
                 type="button"
                 onClick={() => {
                   dispatch(deleteContact(id));
                 }}
               >
                 Delete
-              </DeleteBtn>
-            </ContactsItem>
+              </Button>
+            </ListItem>
           );
         })}
-      </ContactsList>
-    </div>
+      </UnorderedList>
   );
 }
